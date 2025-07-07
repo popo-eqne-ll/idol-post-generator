@@ -20,7 +20,9 @@ fs.readFile(htmlFilePath, 'utf8', (err, htmlData) => {
         const jsFileName = jsFileMatch[1];
         const jsFilePath = path.resolve(buildDir, 'assets', jsFileName);
         try {
-            const jsContent = fs.readFileSync(jsFilePath, 'utf8');
+            let jsContent = fs.readFileSync(jsFilePath, 'utf8');
+            // Escape <\/script> to prevent premature closing of the script tag
+            jsContent = jsContent.replace(/<\/script>/g, '<\/script>');
             newHtmlData = newHtmlData.replace(jsFileMatch[0], `<script type="module">\n${jsContent}\n<\/script>`);
             fs.unlinkSync(jsFilePath); // Clean up the separate JS file
         } catch (readErr) {
