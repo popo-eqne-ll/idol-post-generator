@@ -188,6 +188,11 @@ function App() {
     navigator.clipboard.writeText(generatedText);
   };
 
+  const handlePostToX = () => {
+    const encodedText = encodeURIComponent(generatedText);
+    window.open(`https://twitter.com/intent/tweet?text=${encodedText}`, '_blank');
+  };
+
   return (
     <div className="container mt-5">
       <h1 className="mb-4 fs-4">カメコ投稿テンプレート生成器</h1>
@@ -299,7 +304,10 @@ function App() {
           <div className="mb-3">
             <textarea className="form-control" style={{height: "250px"}} value={generatedText} readOnly />
           </div>
-          <button className="btn btn-primary" onClick={handleCopyClipBoard}>クリップボードにコピー</button>
+          <div className="d-flex justify-content-between">
+            <button className="btn btn-primary" onClick={handleCopyClipBoard}>クリップボードにコピー</button>
+            <button className="btn btn-info" onClick={handlePostToX}>Xにポスト</button>
+          </div>
         </div>
       </div>
     </div>
