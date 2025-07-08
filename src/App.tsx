@@ -190,7 +190,7 @@ function App() {
 
   const handlePostToX = () => {
     const encodedText = encodeURIComponent(generatedText);
-    window.open(`https://twitter.com/intent/tweet?text=${encodedText}`, '_blank');
+    window.open(`https://x.com/intent/tweet?text=${encodedText}`, '_blank');
   };
 
   return (
