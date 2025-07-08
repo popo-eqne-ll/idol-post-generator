@@ -214,15 +214,15 @@ function App() {
             <label htmlFor="liveTitle" className="form-label">ライブタイトル</label>
             <input type="text" className="form-control" id="liveTitle" value={formData.liveTitle} onChange={handleChange} />
           </div>
-          <div className="mb-3">
-            <label htmlFor="livePlace" className="form-label">場所</label>
+          <fieldset className="mb-3">
+            <legend className="form-label">場所</legend>
             <select className="form-select mb-2" id="livePlacePrefix" value={formData.livePlacePrefix} onChange={handleChange} style={{ width: '100px' }}>
               <option value="@">@</option>
               <option value="in">in</option>
               <option value="📍">📍</option>
             </select>
             <input type="text" className="form-control" id="livePlace" value={formData.livePlace} onChange={handleChange} />
-          </div>
+          </fieldset>
           <div className="mb-3">
             <label htmlFor="group" className="form-label">グループ</label>
             <select className="form-select" id="group" value={formData.group} onChange={handleGroupChange}>
@@ -231,8 +231,8 @@ function App() {
               ))}
             </select>
           </div>
-          <div className="mb-3">
-            <label className="form-label">メンバー</label>
+          <fieldset className="mb-3">
+            <legend className="form-label">メンバー</legend>
             <div style={{ maxHeight: '350px', overflowY: 'auto', border: '1px solid #ced4da', padding: '10px', borderRadius: '5px' }}>
               {groups[formData.group].map(member => (
                 <div key={member.name} className="form-check">
@@ -250,7 +250,7 @@ function App() {
                 </div>
               ))}
             </div>
-          </div>
+          </fieldset>
           <div className="form-check mb-3">
             <input
               className="form-check-input"
