@@ -53,11 +53,14 @@ interface FormData {
   dateFormat: string;
   liveTitle: string;
   livePlace: string;
+  livePlacePrefix: string;
   group: string;
   selectedMembers: string[];
   honorific: string;
   hashtags: string;
   membersAsHashtags: boolean;
+  reverseAccountHonorific: boolean;
+  useParenthesesForAccount: boolean;
 }
 
 const getInitialState = (): FormData => {
@@ -66,11 +69,14 @@ const getInitialState = (): FormData => {
     dateFormat: 'YYYY/MM/DD',
     liveTitle: '',
     livePlace: '',
+    livePlacePrefix: '@',
     group: 'イコラブ',
     selectedMembers: [],
     honorific: 'さん',
     hashtags: '',
     membersAsHashtags: false,
+    reverseAccountHonorific: false,
+    useParenthesesForAccount: true,
   };
 
   try {
@@ -115,7 +121,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem('idolPostGenerator', JSON.stringify(formData));
 
-    const { liveDate, dateFormat, liveTitle, livePlace, group, selectedMembers, honorific, hashtags, membersAsHashtags } = formData;
+    const { liveDate, dateFormat, liveTitle, livePlace, livePlacePrefix, group, selectedMembers, honorific, hashtags, membersAsHashtags, reverseAccountHonorific, useParenthesesForAccount } = formData;
 
     const formatDate = (dateStr: string, format: string): string => {
         if (!dateStr) return '';
@@ -142,15 +148,24 @@ function App() {
     const membersText = selectedMembers.map(name => {
         const memberInfo = groups[group].find(m => m.name === name);
         if (memberInfo) {
+            const account = useParenthesesForAccount ? `(@${memberInfo.account})` : `@${memberInfo.account}`;
+            let namePart = memberInfo.name;
             if (membersAsHashtags) {
-                return `#${memberInfo.name.replace(/\s/g, '')} (@${memberInfo.account})${honorific}`;
+                namePart = `#${memberInfo.name.replace(/\s/g, '')}`;
             }
-            return `${memberInfo.name} (@${memberInfo.account})${honorific}`;
+
+            if (reverseAccountHonorific) {
+                if (membersAsHashtags) {
+                    return `${namePart} ${honorific} ${account}`;
+                }
+                return `${namePart}${honorific} ${account}`;
+            }
+            return `${namePart} ${account}${honorific}`;
         }
         return `${name}${honorific}`;
     }).join('\n');
 
-    const text = `\n${formatDate(liveDate, dateFormat)}\n${liveTitle}\n@ ${livePlace}\n\n${membersText}\n\n${createHashtags(hashtags)}\n    `.trim();
+    const text = `\n${formatDate(liveDate, dateFormat)}\n${liveTitle}\n${livePlacePrefix} ${livePlace}\n\n${membersText}\n\n${createHashtags(hashtags)}\n    `.trim();
     setGeneratedText(text);
   }, [formData]);
 
@@ -169,7 +184,11 @@ function App() {
           </div>
           <div className="mb-3">
             <label htmlFor="dateFormat" className="form-label">日付フォーマット</label>
-            <input type="text" className="form-control" id="dateFormat" value={formData.dateFormat} onChange={handleChange} />
+            <select className="form-select" id="dateFormat" value={formData.dateFormat} onChange={handleChange}>
+              <option value="YYYY/MM/DD">YYYY/MM/DD</option>
+              <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+              <option value="YYYY.MM.DD">YYYY.MM.DD</option>
+            </select>
           </div>
           <div className="mb-3">
             <label htmlFor="liveTitle" className="form-label">ライブタイトル</label>
@@ -177,6 +196,10 @@ function App() {
           </div>
           <div className="mb-3">
             <label htmlFor="livePlace" className="form-label">場所</label>
+            <select className="form-select mb-2" id="livePlacePrefix" value={formData.livePlacePrefix} onChange={handleChange} style={{ width: '100px' }}>
+              <option value="@">@</option>
+              <option value="in">in</option>
+            </select>
             <input type="text" className="form-control" id="livePlace" value={formData.livePlace} onChange={handleChange} />
           </div>
           <div className="mb-3">
@@ -219,6 +242,30 @@ function App() {
               メンバー名をハッシュタグにする
             </label>
           </div>
+          <div className="form-check mb-3">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="reverseAccountHonorific"
+              checked={formData.reverseAccountHonorific}
+              onChange={handleChange}
+            />
+            <label className="form-check-label" htmlFor="reverseAccountHonorific">
+              敬称とXアカウントを逆にする
+            </label>
+          </div>
+          <div className="form-check mb-3">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="useParenthesesForAccount"
+              checked={formData.useParenthesesForAccount}
+              onChange={handleChange}
+            />
+            <label className="form-check-label" htmlFor="useParenthesesForAccount">
+              Xアカウントを()で囲う
+            </label>
+          </div>
           <div className="mb-3">
             <label htmlFor="honorific" className="form-label">敬称</label>
             <select className="form-select" id="honorific" value={formData.honorific} onChange={handleChange}>
@@ -232,7 +279,7 @@ function App() {
           </div>
         </div>
         <div className="col-md-6">
-          <h2>生成された投稿</h2>
+          <h2 className="fs-4">生成された投稿</h2>
           <div className="mb-3">
             <textarea className="form-control" style={{height: "250px"}} value={generatedText} readOnly />
           </div>
