@@ -214,6 +214,7 @@ function App() {
             <select className="form-select mb-2" id="livePlacePrefix" value={formData.livePlacePrefix} onChange={handleChange} style={{ width: '100px' }}>
               <option value="@">@</option>
               <option value="in">in</option>
+              <option value="📍">📍</option>
             </select>
             <input type="text" className="form-control" id="livePlace" value={formData.livePlace} onChange={handleChange} />
           </div>
