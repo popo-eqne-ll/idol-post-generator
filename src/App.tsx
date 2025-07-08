@@ -305,8 +305,8 @@ function App() {
             <textarea className="form-control" style={{height: "250px"}} value={generatedText} readOnly />
           </div>
           <div className="d-flex justify-content-between mb-5">
-            <button className="btn btn-primary" onClick={handleCopyClipBoard}>クリップボードにコピー</button>
-            <button className="btn btn-info" onClick={handlePostToX}>Xにポスト</button>
+            <button className="btn btn-outline-primary me-2" onClick={handleCopyClipBoard}>クリップボードにコピー</button>
+            <button className="btn btn-info flex-grow-1" onClick={handlePostToX}>Xにポスト</button>
           </div>
         </div>
       </div>
