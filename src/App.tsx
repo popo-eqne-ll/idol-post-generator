@@ -186,11 +186,19 @@ function App() {
 
   const handleCopyClipBoard = () => {
     navigator.clipboard.writeText(generatedText);
+    // GA4イベント送信
+    if (window.gtag) {
+      window.gtag('event', 'copy_to_clipboard');
+    }
   };
 
   const handlePostToX = () => {
     const encodedText = encodeURIComponent(generatedText);
     window.open(`https://x.com/intent/tweet?text=${encodedText}`, '_blank');
+    // GA4イベント送信
+    if (window.gtag) {
+      window.gtag('event', 'post_to_x');
+    }
   };
 
   return (
