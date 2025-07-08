@@ -100,6 +100,12 @@ function App() {
   const handleGroupChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { id, value } = e.target;
     setFormData(prev => ({ ...prev, [id]: value, selectedMembers: [] }));
+    // GA4イベント送信
+    if (window.gtag) {
+      window.gtag('event', 'select_group', {
+        group_name: value,
+      });
+    }
   };
 
   const handleMemberChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -108,6 +114,15 @@ function App() {
       const newSelectedMembers = checked
         ? [...prev.selectedMembers, value]
         : prev.selectedMembers.filter(name => name !== value);
+
+      // GA4イベント送信
+      if (window.gtag) {
+        window.gtag('event', checked ? 'select_member' : 'deselect_member', {
+          group_name: prev.group,
+          member_name: value,
+        });
+      }
+
       return { ...prev, selectedMembers: newSelectedMembers };
     });
   };
