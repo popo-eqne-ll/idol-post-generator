@@ -177,7 +177,7 @@ function App() {
     <div className="container mt-5">
       <h1 className="mb-4 fs-4">カメコ投稿テンプレート生成器</h1>
       <div className="row">
-        <div className="col-md-6">
+        <div className="col-md-5">
           <div className="mb-3">
             <label htmlFor="liveDate" className="form-label">日付</label>
             <input type="date" className="form-control" id="liveDate" value={formData.liveDate} onChange={handleChange} />
@@ -278,7 +278,7 @@ function App() {
             <input type="text" className="form-control" id="hashtags" value={formData.hashtags} onChange={handleChange} />
           </div>
         </div>
-        <div className="col-md-6">
+        <div className="col-md-7">
           <h2 className="fs-4">生成された投稿</h2>
           <div className="mb-3">
             <textarea className="form-control" style={{height: "250px"}} value={generatedText} readOnly />
