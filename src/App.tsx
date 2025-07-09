@@ -229,7 +229,7 @@ function App() {
               <option value="in">in</option>
               <option value="📍">📍</option>
             </select>
-            <input type="text" className="form-control" id="livePlace" value={formData.livePlace} onChange={handleChange} />
+            <input type="text" className="form-control" id="livePlace" placeholder="会場名など" value={formData.livePlace} onChange={handleChange} />
           </fieldset>
           <div className="mb-3">
             <label htmlFor="group" className="form-label">グループ</label>
@@ -308,9 +308,9 @@ function App() {
           </div>
         </div>
         <div className="col-md-7">
-          <h2 className="fs-4">生成された投稿</h2>
+          <h2 className="fs-4" id="generated-post-title">生成された投稿</h2>
           <div className="mb-3">
-            <textarea className="form-control" style={{height: "250px"}} value={generatedText} readOnly />
+            <textarea className="form-control" style={{height: "250px"}} value={generatedText} readOnly aria-labelledby="generated-post-title" />
           </div>
           <div className="d-flex justify-content-between mb-5">
             <button className="btn btn-outline-primary me-2" onClick={handleCopyClipBoard}>クリップボードにコピー</button>
