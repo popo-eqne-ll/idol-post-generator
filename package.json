@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
-    "format": "prettier --write ."
+    "format": "prettier --write \"**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@types/bootstrap": "^5.2.10",
