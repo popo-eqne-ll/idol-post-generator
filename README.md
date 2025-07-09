@@ -6,13 +6,11 @@ This is a web application that allows you to generate social media posts for you
 
 ## ✨ Features
 
--   React 19
--   Vite
--   TypeScript
--   Bootstrap 5
--   ESLint
--   Prettier
--   Vitest
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=typescript,react,vite,vitest,bootstrap,githubactions,git" />
+  </a>
+</p>
 
 ## 📋 Prerequisites
 
