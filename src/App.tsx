@@ -276,6 +276,9 @@ function App() {
           </div>
           <fieldset className="mb-3">
             <legend className="form-label">場所</legend>
+            <label htmlFor="livePlacePrefix" className="form-label sr-only">
+              場所の形式
+            </label>
             <select
               className="form-select mb-2"
               id="livePlacePrefix"
