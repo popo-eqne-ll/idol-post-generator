@@ -223,7 +223,11 @@ function App() {
 
   const handlePostToX = () => {
     const encodedText = encodeURIComponent(generatedText);
-    window.open(`https://x.com/intent/tweet?text=${encodedText}`, '_blank');
+    window.open(
+      `https://x.com/intent/tweet?text=${encodedText}`,
+      '_blank',
+      'noopener,noreferrer',
+    );
     // GA4イベント送信
     if (window.gtag) {
       window.gtag('event', 'post_to_x');
