@@ -27,7 +27,7 @@ const groups: Record<string, Member[]> = {
     { name: '櫻井 もも', account: 'sakurai_momo_' },
     { name: '菅波 美玲', account: 'suganami_mirei_' },
     { name: '鈴木 瞳美', account: 'suzuki_hitomi_' },
-    { name: '谷崎 早耶', account: 'tanizaki_saya_' },
+    { name: '谷崎 早耶', account: 'tanizaki_saya' },
     { name: '冨田 菜々風', account: 'tomita_nanaka_' },
     { name: '永田 詩央里', account: 'nagata_shiori_' },
     { name: '本田 珠由記', account: 'honda_miyuki_' },
