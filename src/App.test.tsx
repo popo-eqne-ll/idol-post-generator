@@ -102,7 +102,7 @@ describe('Idol Post Generator', () => {
       '特別公演',
       '@ 武道館',
       '',
-      '#冨田菜々風 ちゃん (@tomita_nanaka_)',
+      '#冨田菜々風 ちゃん (@tomita_nanaka)',
       '',
       '#ノイミー #ノイミー_カメコ #かわいい #超絶イケメン',
     ].join('\n');
