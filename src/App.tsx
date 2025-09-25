@@ -11,7 +11,7 @@ interface FormData {
   selectedMembers: string[];
   honorific: string;
   hashtags: string;
-  membersAsHashtags: boolean;
+  addMemberNameToHashtag: boolean;
   reverseAccountHonorific: boolean;
   useParenthesesForAccount: boolean;
 }
@@ -27,7 +27,7 @@ const getInitialState = (): FormData => {
     selectedMembers: [],
     honorific: 'さん',
     hashtags: '',
-    membersAsHashtags: false,
+    addMemberNameToHashtag: false,
     reverseAccountHonorific: false,
     useParenthesesForAccount: true,
   };
@@ -104,7 +104,7 @@ function App() {
       selectedMembers,
       honorific,
       hashtags,
-      membersAsHashtags,
+      addMemberNameToHashtag,
       reverseAccountHonorific,
       useParenthesesForAccount,
     } = formData;
@@ -132,7 +132,10 @@ function App() {
         .filter((tag) => tag)
         .map((tag) => `#${tag}`)
         .join(' ');
-      return [groupHashtag, groupCamekoHashtag, userHashtags]
+      const memberHashtags = addMemberNameToHashtag
+        ? selectedMembers.map((name) => `#${name.replace(/\s/g, '')}`).join(' ')
+        : '';
+      return [groupHashtag, groupCamekoHashtag, userHashtags, memberHashtags]
         .filter(Boolean)
         .join(' ');
     };
@@ -144,15 +147,9 @@ function App() {
           const account = useParenthesesForAccount
             ? `(@${memberInfo.account})`
             : `@${memberInfo.account}`;
-          let namePart = memberInfo.name;
-          if (membersAsHashtags) {
-            namePart = `#${memberInfo.name.replace(/\s/g, '')}`;
-          }
+          const namePart = memberInfo.name;
 
           if (reverseAccountHonorific) {
-            if (membersAsHashtags) {
-              return `${namePart} ${honorific} ${account}`;
-            }
             return `${namePart}${honorific} ${account}`;
           }
           return `${namePart} ${account}${honorific}`;
@@ -308,12 +305,12 @@ function App() {
             <input
               className="form-check-input"
               type="checkbox"
-              id="membersAsHashtags"
-              checked={formData.membersAsHashtags}
+              id="addMemberNameToHashtag"
+              checked={formData.addMemberNameToHashtag}
               onChange={handleChange}
             />
-            <label className="form-check-label" htmlFor="membersAsHashtags">
-              メンバー名をハッシュタグにする
+            <label className="form-check-label" htmlFor="addMemberNameToHashtag">
+              ハッシュタグにメンバー名を追加する
             </label>
           </div>
           <div className="form-check mb-3">

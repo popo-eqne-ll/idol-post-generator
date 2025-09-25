@@ -79,7 +79,7 @@ describe('Idol Post Generator', () => {
     fireEvent.click(screen.getByLabelText('冨田 菜々風'));
 
     // 3. オプションを変更
-    fireEvent.click(screen.getByLabelText('メンバー名をハッシュタグにする'));
+    fireEvent.click(screen.getByLabelText('ハッシュタグにメンバー名を追加する'));
     fireEvent.click(screen.getByLabelText('敬称とXアカウントを逆にする'));
     fireEvent.change(screen.getByLabelText('敬称'), {
       target: { value: 'ちゃん' },
@@ -102,9 +102,9 @@ describe('Idol Post Generator', () => {
       '特別公演',
       '@ 武道館',
       '',
-      '#冨田菜々風 ちゃん (@tomita_nanaka)',
+      '冨田 菜々風ちゃん (@tomita_nanaka)',
       '',
-      '#ノイミー #ノイミー_カメコ #かわいい #超絶イケメン',
+      '#ノイミー #ノイミー_カメコ #かわいい #超絶イケメン #冨田菜々風',
     ].join('\n');
 
     expect(generatedTextArea.value).toBe(expectedText);
