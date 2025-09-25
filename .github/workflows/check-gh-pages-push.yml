@@ -1,0 +1,21 @@
+name: Check gh-pages Push
+
+on:
+  push:
+    branches:
+      - gh-pages
+
+jobs:
+  check-pusher:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if pusher is a developer
+        # This workflow allows pushes only from the official GitHub Actions bot,
+        # which is used by the deployment action. All other pushes from developers
+        # will be marked as a failure.
+        if: github.actor != 'github-actions[bot]'
+        run: |
+          echo "ERROR: Direct pushes to the gh-pages branch are not allowed."
+          echo "Please submit changes to the main branch."
+          echo "The site will be deployed automatically from there."
+          exit 1
