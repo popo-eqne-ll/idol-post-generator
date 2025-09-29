@@ -125,7 +125,6 @@ function App() {
     };
 
     const createHashtags = (tags: string): string => {
-      const groupHashtag = group ? `#${group}` : '';
       const groupCamekoHashtag = group ? `#${group}_カメコ` : '';
       const userHashtags = tags
         .split(/[,\s]+/)
@@ -135,7 +134,7 @@ function App() {
       const memberHashtags = addMemberNameToHashtag
         ? selectedMembers.map((name) => `#${name.replace(/\s/g, '')}`).join(' ')
         : '';
-      return [groupHashtag, groupCamekoHashtag, userHashtags, memberHashtags]
+      return [groupCamekoHashtag, userHashtags, memberHashtags]
         .filter(Boolean)
         .join(' ');
     };
