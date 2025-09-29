@@ -53,7 +53,7 @@ describe('Idol Post Generator', () => {
       '大谷 映美里 (@otani_emiri)さん',
       '佐々木 舞香 (@sasaki_maika)さん',
       '',
-      '#イコラブ #イコラブ_カメコ',
+      '#イコラブ_カメコ',
     ].join('\n');
 
     expect(generatedTextArea.value).toBe(expectedText);
@@ -87,8 +87,10 @@ describe('Idol Post Generator', () => {
 
     // 4. カスタムハッシュタグを追加
     fireEvent.change(
-      screen.getByLabelText('追加ハッシュタグ (スペースかカンマ区切り)'),
-      { target: { value: 'かわいい 超絶イケメン' } },
+      screen.getByLabelText('追加ハッシュタグ (スペースかカンマ区切り)')
+      , {
+        target: { value: 'かわいい 超絶イケメン' },
+      },
     );
 
     // 5. 生成されたテキストエリアを取得
@@ -104,7 +106,7 @@ describe('Idol Post Generator', () => {
       '',
       '冨田 菜々風ちゃん (@tomita_nanaka)',
       '',
-      '#ノイミー #ノイミー_カメコ #かわいい #超絶イケメン #冨田菜々風',
+      '#ノイミー_カメコ #かわいい #超絶イケメン #冨田菜々風',
     ].join('\n');
 
     expect(generatedTextArea.value).toBe(expectedText);
