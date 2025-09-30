@@ -79,7 +79,9 @@ describe('Idol Post Generator', () => {
     fireEvent.click(screen.getByLabelText('冨田 菜々風'));
 
     // 3. オプションを変更
-    fireEvent.click(screen.getByLabelText('ハッシュタグにメンバー名を追加する'));
+    fireEvent.click(
+      screen.getByLabelText('ハッシュタグにメンバー名を追加する'),
+    );
     fireEvent.click(screen.getByLabelText('敬称とXアカウントを逆にする'));
     fireEvent.change(screen.getByLabelText('敬称'), {
       target: { value: 'ちゃん' },
@@ -87,8 +89,8 @@ describe('Idol Post Generator', () => {
 
     // 4. カスタムハッシュタグを追加
     fireEvent.change(
-      screen.getByLabelText('追加ハッシュタグ (スペースかカンマ区切り)')
-      , {
+      screen.getByLabelText('追加ハッシュタグ (スペースかカンマ区切り)'),
+      {
         target: { value: 'かわいい 超絶イケメン' },
       },
     );

@@ -125,7 +125,16 @@ function App() {
     };
 
     const createHashtags = (tags: string): string => {
-      const groupCamekoHashtag = group ? `#${group}_カメコ` : '';
+      const groupInfo = groups[group];
+      let groupBasedHashtag = '';
+      if (group) {
+        if (groupInfo.disableCamekoHashtag) {
+          groupBasedHashtag = `#${group}`;
+        } else {
+          groupBasedHashtag = `#${group}_カメコ`;
+        }
+      }
+
       const userHashtags = tags
         .split(/[,\s]+/)
         .filter((tag) => tag)
@@ -134,14 +143,14 @@ function App() {
       const memberHashtags = addMemberNameToHashtag
         ? selectedMembers.map((name) => `#${name.replace(/\s/g, '')}`).join(' ')
         : '';
-      return [groupCamekoHashtag, userHashtags, memberHashtags]
+      return [groupBasedHashtag, userHashtags, memberHashtags]
         .filter(Boolean)
         .join(' ');
     };
 
     const membersText = selectedMembers
       .map((name) => {
-        const memberInfo = groups[group].find((m) => m.name === name);
+        const memberInfo = groups[group].members.find((m) => m.name === name);
         if (memberInfo) {
           const account = useParenthesesForAccount
             ? `(@${memberInfo.account})`
@@ -280,7 +289,7 @@ function App() {
                 borderRadius: '5px',
               }}
             >
-              {groups[formData.group].map((member) => (
+              {groups[formData.group].members.map((member) => (
                 <div key={member.name} className="form-check">
                   <input
                     className="form-check-input"
@@ -308,7 +317,10 @@ function App() {
               checked={formData.addMemberNameToHashtag}
               onChange={handleChange}
             />
-            <label className="form-check-label" htmlFor="addMemberNameToHashtag">
+            <label
+              className="form-check-label"
+              htmlFor="addMemberNameToHashtag"
+            >
               ハッシュタグにメンバー名を追加する
             </label>
           </div>
