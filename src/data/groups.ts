@@ -2,6 +2,7 @@ interface Member {
   name: string;
   account: string;
   url: string;
+  specificHashtag?: string;
 }
 
 interface GroupInfo {
