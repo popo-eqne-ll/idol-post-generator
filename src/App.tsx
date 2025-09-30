@@ -140,10 +140,24 @@ function App() {
         .filter((tag) => tag)
         .map((tag) => `#${tag}`)
         .join(' ');
-      const memberHashtags = addMemberNameToHashtag
-        ? selectedMembers.map((name) => `#${name.replace(/\s/g, '')}`).join(' ')
-        : '';
-      return [groupBasedHashtag, userHashtags, memberHashtags]
+      const memberNameHashtags = addMemberNameToHashtag
+        ? selectedMembers.map((name) => `#${name.replace(/\s/g, '')}`)
+        : [];
+
+      const specificMemberHashtags = selectedMembers
+        .map((name) => {
+          const memberInfo = groups[group].members.find((m) => m.name === name);
+          return memberInfo?.specificHashtag
+            ? `#${memberInfo.specificHashtag}`
+            : null;
+        })
+        .filter((tag): tag is string => tag !== null);
+
+      const allMemberHashtags = Array.from(
+        new Set([...specificMemberHashtags, ...memberNameHashtags]),
+      ).join(' ');
+
+      return [groupBasedHashtag, userHashtags, allMemberHashtags]
         .filter(Boolean)
         .join(' ');
     };
