@@ -229,4 +229,89 @@ export const groups: Record<string, GroupInfo> = {
     ],
     disableCamekoHashtag: true,
   },
+  'Rain Tree': {
+    members: [
+      {
+        name: '朝宮 日向',
+        account: 'asamiya_hinata_',
+        url: 'https://x.com/asamiya_hinata_',
+      },
+      {
+        name: '綾瀬 ことり',
+        account: 'ayase_kotori_',
+        url: 'https://x.com/ayase_kotori_',
+      },
+      {
+        name: '市原 紬希',
+        account: 'ichiharatsumugi',
+        url: 'https://x.com/ichiharatsumugi',
+      },
+      {
+        name: '遠藤 莉乃',
+        account: 'endo_rino_',
+        url: 'https://x.com/endo_rino_',
+      },
+      {
+        name: '片瀬 真花',
+        account: 'katase_manaka',
+        url: 'https://x.com/katase_manaka',
+      },
+      { name: '加藤 柊', account: 'kato_shu_', url: 'https://x.com/kato_shu_' },
+      {
+        name: '黒澤 禾恋',
+        account: 'kurosawakaren_',
+        url: 'https://x.com/kurosawakaren_',
+      },
+      {
+        name: '佐藤 莉華',
+        account: '_satorica',
+        url: 'https://x.com/_satorica',
+      },
+      {
+        name: '鈴野 みお',
+        account: 'suzuno_mio',
+        url: 'https://x.com/suzuno_mio',
+      },
+      {
+        name: '永瀬 真梨',
+        account: 'nagase_mari_',
+        url: 'https://x.com/nagase_mari_',
+      },
+      {
+        name: '仲俣 美希',
+        account: 'nakamata_miki',
+        url: 'https://x.com/nakamata_miki',
+      },
+      {
+        name: '新野 楓果',
+        account: 'niino_fuka',
+        url: 'https://x.com/niino_fuka',
+      },
+      {
+        name: '橋本 真希',
+        account: 'hashimoto_maki_',
+        url: 'https://x.com/hashimoto_maki_',
+      },
+      {
+        name: '葉山 莉瑚',
+        account: 'hayama_rico_',
+        url: 'https://x.com/hayama_rico_',
+      },
+      {
+        name: '水野 乃愛',
+        account: 'mizuno_noa_',
+        url: 'https://x.com/mizuno_noa_',
+      },
+      {
+        name: '百瀬 紗菜',
+        account: 'momose_suzuna',
+        url: 'https://x.com/momose_suzuna',
+      },
+      {
+        name: '吉川 海未',
+        account: 'yoshikawa_umi',
+        url: 'https://x.com/yoshikawa_umi',
+      },
+    ],
+  },
 };
