@@ -313,5 +313,6 @@ export const groups: Record<string, GroupInfo> = {
         url: 'https://x.com/yoshikawa_umi',
       },
     ],
+    disableCamekoHashtag: true,
   },
 };
