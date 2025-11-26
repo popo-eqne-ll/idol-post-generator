@@ -128,12 +128,11 @@ function App() {
       const groupInfo = groups[group];
       let groupBasedHashtag = '';
       if (group) {
-        if (groupInfo.disableCamekoHashtag) {
-          groupBasedHashtag = `#${group}`;
-        } else {
-          groupBasedHashtag = `#${group}_カメコ`;
-        }
-      }
+            if (groupInfo.disableCamekoHashtag) {
+              groupBasedHashtag = `#${group.replace(/\s/g, '')}`;
+            } else {
+              groupBasedHashtag = `#${group.replace(/\s/g, '')}_カメコ`;
+            }      }
 
       const userHashtags = tags
         .split(/[,\s]+/)
