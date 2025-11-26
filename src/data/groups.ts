@@ -229,7 +229,7 @@ export const groups: Record<string, GroupInfo> = {
     ],
     disableCamekoHashtag: true,
   },
-  RainTree: {
+  'Rain Tree': {
     members: [
       {
         name: '朝宮 日向',
@@ -313,6 +313,5 @@ export const groups: Record<string, GroupInfo> = {
         url: 'https://x.com/yoshikawa_umi',
       },
     ],
-    disableCamekoHashtag: true,
   },
 };
